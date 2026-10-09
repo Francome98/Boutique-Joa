@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ferme des Trois Sillons – Boutique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f5ec; --surface:#ffffff; --ink:#26211a; --muted:#6b6a5c; --leaf:#3b6a2c; --leaf-ink:#ffffff;
+  --yolk:#e9b61f; --tomato:#c2402a; --line:#d9dfcc;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171a12;--surface:#20241a;--ink:#eef0e4;--muted:#a3a690;--leaf:#8cc06f;--leaf-ink:#14200e;--line:#33392a;}}
+:root[data-theme="dark"]{--bg:#171a12;--surface:#20241a;--ink:#eef0e4;--muted:#a3a690;--leaf:#8cc06f;--leaf-ink:#14200e;--line:#33392a;}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;line-height:1.5}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:3px solid var(--yolk);outline-offset:2px}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.logo{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.15rem;text-decoration:none}
+nav{display:flex;gap:22px;font-size:.95rem}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+.cart-btn{border:0;background:var(--leaf);color:var(--leaf-ink);font:600 .95rem "Instrument Sans";padding:10px 16px;border-radius:999px;cursor:pointer}
+@media(max-width:640px){nav{display:none}}
+
+.hero{padding:48px 0 36px;display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center}
+.hero h1{font-size:clamp(2.3rem,6vw,4rem);font-weight:800;letter-spacing:-.02em}
+.hero p{max-width:46ch;color:var(--muted);font-size:1.08rem;margin:18px 0 26px}
+.btn{display:inline-block;background:var(--ink);color:var(--bg);padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:600}
+.crate{background:var(--yolk);border-radius:18px;padding:18px;color:#26211a;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;transform:rotate(2deg)}
+.crate span{background:rgba(255,255,255,.55);border-radius:10px;aspect-ratio:1;display:grid;place-items:center;font-size:2.4rem}
+.crate b{grid-column:1/-1;font:700 1rem "Bricolage Grotesque";padding-top:4px}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.crate{transform:none}}
+
+.promises{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-block:1px solid var(--line);margin-bottom:44px}
+.promises div{padding:16px 18px;font-size:.93rem;color:var(--muted)}
+.promises div+div{border-left:1px solid var(--line)}
+.promises strong{display:block;color:var(--ink)}
+@media(max-width:640px){.promises{grid-template-columns:1fr}.promises div+div{border-left:0;border-top:1px solid var(--line)}}
+
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:14px;margin-bottom:20px}
+.head h2{font-size:2rem}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 .9rem "Instrument Sans";padding:8px 14px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--leaf);color:var(--leaf-ink);border-color:var(--leaf)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.pic{height:140px;display:grid;place-items:center;font-size:4rem}
+.info{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.info h3{font-size:1.1rem}
+.info small{color:var(--muted)}
+.tag{align-self:flex-start;background:var(--tomato);color:#fff;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:6px}
+.buy{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:8px}
+.price{font:700 1.2rem "Bricolage Grotesque"}
+.price span{font:400 .8rem "Instrument Sans";color:var(--muted)}
+.add{border:1.5px solid var(--leaf);background:transparent;color:var(--leaf);font:600 .9rem "Instrument Sans";padding:8px 14px;border-radius:8px;cursor:pointer}
+.add:hover{background:var(--leaf);color:var(--leaf-ink)}
+
+.story{margin:64px 0;background:var(--leaf);color:var(--leaf-ink);border-radius:20px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.story h2{font-size:2rem}
+.story p{margin:0;opacity:.92}
+@media(max-width:700px){.story{grid-template-columns:1fr;padding:28px}}
+
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:9}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(380px,100%);background:var(--surface);z-index:10;transform:translateX(100%);transition:transform .25s;padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column}
+body.open #drawer{transform:none}
+body.open #overlay{display:block}
+#drawer h2{font-size:1.5rem;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+#drawer h2 button{border:0;background:none;color:var(--ink);font-size:1.6rem;cursor:pointer}
+#items{flex:1;overflow:auto}
+.line{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.empty{color:var(--muted);padding:20px 0}
+.total{display:flex;justify-content:space-between;font:700 1.2rem "Bricolage Grotesque";padding:16px 0}
+.pay{width:100%;border:0;background:var(--leaf);color:var(--leaf-ink);font:600 1rem "Instrument Sans";padding:14px;border-radius:10px;cursor:pointer}
+@media(prefers-reduced-motion:reduce){#drawer{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#">Ferme des Trois Sillons</a>
+    <nav><a href="#produits">Produits</a><a href="#ferme">La ferme</a><a href="#contact">Retrait &amp; livraison</a></nav>
+    <button class="cart-btn" id="open">Panier (<span id="count">0</span>)</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <h1>Récolté ce matin, chez vous demain.</h1>
+      <p>Légumes, œufs, miel et fromages de notre exploitation familiale. Vous commandez avant mercredi, nous récoltons jeudi, vous retirez ou vous êtes livré vendredi.</p>
+      <a class="btn" href="#produits">Voir les produits</a>
+    </div>
+    <div class="crate" aria-hidden="true"><span>🍅</span><span>🥕</span><span>🥚</span><span>🍯</span><span>🍎</span><span>🧀</span><b>Panier de la semaine : 18 €</b></div>
+  </section>
+
+  <section class="promises">
+    <div><strong>Livraison à 10 km</strong>Gratuite dès 30 € d'achat</div>
+    <div><strong>Retrait à la ferme</strong>Vendredi, 16 h à 19 h</div>
+    <div><strong>Producteur local</strong>Culture raisonnée, sans serre chauffée</div>
+  </section>
+
+  <section id="produits">
+    <div class="head">
+      <h2>Nos produits</h2>
+      <div class="filters" id="filters">
+        <button class="chip" aria-pressed="true" data-cat="all">Tout</button>
+        <button class="chip" aria-pressed="false" data-cat="Légumes">Légumes</button>
+        <button class="chip" aria-pressed="false" data-cat="Fruits">Fruits</button>
+        <button class="chip" aria-pressed="false" data-cat="Œufs et laitiers">Œufs et laitiers</button>
+        <button class="chip" aria-pressed="false" data-cat="Épicerie">Épicerie</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="story" id="ferme">
+    <h2>Une ferme de 24 hectares, trois générations.</h2>
+    <p>Nous cultivons en rotation, nous ne vendons que ce qui est de saison et nous composons chaque panier à la main. Vous savez qui a planté vos carottes, et vous pouvez venir le voir.</p>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <span>Ferme des Trois Sillons · 12 chemin des Prés · contact@troissillons.example</span>
+    <span>Maquette : produits et prix fictifs</span>
+  </div>
+</footer>
+
+<div id="overlay"></div>
+<aside id="drawer" aria-label="Panier">
+  <h2>Votre panier <button id="close" aria-label="Fermer le panier">×</button></h2>
+  <div id="items"></div>
+  <div class="total"><span>Total</span><span id="total">0,00 €</span></div>
+  <button class="pay">Commander et choisir le créneau</button>
+</aside>
+
+<script>
+const products=[
+ {id:1,n:"Tomates anciennes",c:"Légumes",p:4.5,u:"/ kg",e:"🍅",bg:"#f6d3c9",tag:"De saison"},
+ {id:2,n:"Carottes botte",c:"Légumes",p:2.9,u:"/ botte",e:"🥕",bg:"#fbe0bd"},
+ {id:3,n:"Pommes de terre",c:"Légumes",p:1.8,u:"/ kg",e:"🥔",bg:"#eadcc3"},
+ {id:4,n:"Courges butternut",c:"Légumes",p:3.2,u:"/ pièce",e:"🎃",bg:"#fbe3b3",tag:"Nouveau"},
+ {id:5,n:"Pommes Gala",c:"Fruits",p:3.2,u:"/ kg",e:"🍎",bg:"#f4cfcf"},
+ {id:6,n:"Poires conférence",c:"Fruits",p:3.6,u:"/ kg",e:"🍐",bg:"#e3ecbd"},
+ {id:7,n:"Œufs plein air",c:"Œufs et laitiers",p:3.2,u:"/ boîte de 6",e:"🥚",bg:"#f4ecd2"},
+ {id:8,n:"Fromage de chèvre frais",c:"Œufs et laitiers",p:3.8,u:"/ pièce",e:"🧀",bg:"#f7ecb6"},
+ {id:9,n:"Miel de fleurs",c:"Épicerie",p:8.9,u:"/ pot 500 g",e:"🍯",bg:"#f6dc9a"},
+ {id:10,n:"Farine de blé T80",c:"Épicerie",p:2.6,u:"/ kg",e:"🌾",bg:"#ecdfb8"}
+];
+const fmt=n=>n.toFixed(2).replace(".",",")+" €";
+let cart={},cat="all";
+const grid=document.getElementById("grid");
+function render(){
+  grid.innerHTML=products.filter(p=>cat==="all"||p.c===cat).map(p=>`
+  <article class="card">
+    <div class="pic" style="background:${p.bg}">${p.e}</div>
+    <div class="info">
+      ${p.tag?`<span class="tag">${p.tag}</span>`:""}
+      <h3>${p.n}</h3><small>${p.c}</small>
+      <div class="buy"><div class="price">${fmt(p.p)} <span>${p.u}</span></div>
+      <button class="add" data-id="${p.id}">Ajouter</button></div>
+    </div>
+  </article>`).join("");
+}
+function drawCart(){
+  const ids=Object.keys(cart);
+  const items=document.getElementById("items");
+  items.innerHTML=ids.length?ids.map(id=>{const p=products.find(x=>x.id==id);return `
+   <div class="line"><div><strong>${p.n}</strong><br><small>${fmt(p.p)} ${p.u}</small></div>
+   <div class="qty"><button data-d="-1" data-id="${id}" aria-label="Retirer un">−</button><span>${cart[id]}</span><button data-d="1" data-id="${id}" aria-label="Ajouter un">+</button></div></div>`}).join(""):'<p class="empty">Votre panier est vide. Ajoutez un produit pour commencer.</p>';
+  const total=ids.reduce((s,id)=>s+products.find(x=>x.id==id).p*cart[id],0);
+  document.getElementById("total").textContent=fmt(total);
+  document.getElementById("count").textContent=ids.reduce((s,id)=>s+cart[id],0);
+}
+grid.addEventListener("click",e=>{const b=e.target.closest(".add");if(!b)return;cart[b.dataset.id]=(cart[b.dataset.id]||0)+1;drawCart();});
+document.getElementById("items").addEventListener("click",e=>{const b=e.target.closest("[data-d]");if(!b)return;const id=b.dataset.id;cart[id]+=+b.dataset.d;if(cart[id]<=0)delete cart[id];drawCart();});
+document.getElementById("filters").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;cat=b.dataset.cat;document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b));render();});
+const toggle=o=>document.body.classList.toggle("open",o);
+document.getElementById("open").onclick=()=>toggle(true);
+document.getElementById("close").onclick=()=>toggle(false);
+document.getElementById("overlay").onclick=()=>toggle(false);
+render();drawCart();
+</script>
+</body>
+</html>
