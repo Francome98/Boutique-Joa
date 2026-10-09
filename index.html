@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ferme des Trois Sillons – Boutique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#">Ferme des Trois Sillons</a>
+    <nav><a href="#produits">Produits</a><a href="#ferme">La ferme</a><a href="#contact">Retrait &amp; livraison</a></nav>
+    <button class="cart-btn" id="open">Panier (<span id="count">0</span>)</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <h1>Récolté ce matin, chez vous demain.</h1>
+      <p>Légumes, œufs, miel et fromages de notre exploitation familiale. Vous commandez avant mercredi, nous récoltons jeudi, vous retirez ou vous êtes livré vendredi.</p>
+      <a class="btn" href="#produits">Voir les produits</a>
+    </div>
+    <div class="crate" aria-hidden="true"><span>🍅</span><span>🥕</span><span>🥚</span><span>🍯</span><span>🍎</span><span>🧀</span><b>Panier de la semaine : 18 €</b></div>
+  </section>
+
+  <section class="promises">
+    <div><strong>Livraison à 10 km</strong>Gratuite dès 30 € d'achat</div>
+    <div><strong>Retrait à la ferme</strong>Vendredi, 16 h à 19 h</div>
+    <div><strong>Producteur local</strong>Culture raisonnée, sans serre chauffée</div>
+  </section>
+
+  <section id="produits">
+    <div class="head">
+      <h2>Nos produits</h2>
+      <div class="filters" id="filters">
+        <button class="chip" aria-pressed="true" data-cat="all">Tout</button>
+        <button class="chip" aria-pressed="false" data-cat="Légumes">Légumes</button>
+        <button class="chip" aria-pressed="false" data-cat="Fruits">Fruits</button>
+        <button class="chip" aria-pressed="false" data-cat="Œufs et laitiers">Œufs et laitiers</button>
+        <button class="chip" aria-pressed="false" data-cat="Épicerie">Épicerie</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="story" id="ferme">
+    <h2>Une ferme de 24 hectares, trois générations.</h2>
+    <p>Nous cultivons en rotation, nous ne vendons que ce qui est de saison et nous composons chaque panier à la main. Vous savez qui a planté vos carottes, et vous pouvez venir le voir.</p>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <span>Ferme des Trois Sillons · 12 chemin des Prés · contact@troissillons.example</span>
+    <span>Maquette : produits et prix fictifs</span>
+  </div>
+</footer>
+
+<div id="overlay"></div>
+<aside id="drawer" aria-label="Panier">
+  <h2>Votre panier <button id="close" aria-label="Fermer le panier">×</button></h2>
+  <div id="items"></div>
+  <div class="total"><span>Total</span><span id="total">0,00 €</span></div>
+  <button class="pay">Commander et choisir le créneau</button>
+</aside>
+
+<script src="js/products.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
